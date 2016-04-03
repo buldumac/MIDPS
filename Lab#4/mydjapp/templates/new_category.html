@@ -1,0 +1,32 @@
+{% extends "main.html" %}
+{% block content %}
+<!-- Main Content -->
+			<section class="main-content padding">
+
+				<div class="row">
+
+					<!-- Full width table -->
+					<div class="col-lg-12">
+
+						<div class="module no-padding">
+							<div class="module-header"><h4 class="redc">Добавить новую категорию
+							</div>
+                        </div>
+
+					</div>
+					<!-- /Full width table -->
+
+				</div>
+                <div class="row">
+                    <div class="col-md-6 col-md-offset-4">
+                        <form method="POST" action="">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button class="btn btn-primary btn-lg centered"" type="submit">Добавить категорию</button>
+                        </form>
+                    </div>
+                </div>
+
+			</section>
+			<!-- /Main Content -->
+{% endblock %}

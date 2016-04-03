@@ -1,0 +1,76 @@
+{% extends "main.html" %}
+{% block content %}
+<!-- Main Content -->
+	<section class="main-content padding">
+
+				<div class="row">
+
+					<!-- Full width table -->
+					<div class="col-lg-12">
+
+						<div class="module no-padding">
+							<div class="module-header"><h4>Все товары ({{ allgoodieslen }})
+							<form class="pull-right" role="search" method="get" action="/search/">
+									<div class="input-group">
+										<input type="text" class="form-control" placeholder="Поиск товара..." name="q" id="q">
+										<span class="input-group-btn">
+											<button type="submit" class="btn btn-default">
+											<span class="icon-search"></span>
+											</button>
+										</span>
+									</div>
+								</form>
+							</div>
+							<div class="module-content table-responsive">
+								<table class="table table-striped fixed">
+									<thead>
+										<tr>
+											<th>Название товара</th>
+											<th class="text-center">Товаров на складе</th>
+											<th class="text-center">Категория товара</th>
+											<th class="text-center"">Действия</th>
+										</tr>
+									</thead>
+									<tbody>
+                                    {% for i in articlesallmain %}
+										<tr>
+											<td>{{ i.title }}</td>
+											<td align="center"><strong>{{ i.stock }}</strong></td>
+											<td align="center" valign="bottom">{{ i.category }}</td>
+											{% if user.is_superuser %}
+											<td class="text-right">
+												<button class="btn btn-xs btn-info"><i class="icon-edit"></i></button>
+												{% if  i.stock  > 0 %}
+													<a href="/post/sell/{{ i.id }}"><button class="btn btn-xs btn-success">Продать единицу</button></a>
+												{% else %}
+													<button class="btn btn-xs btn-success disabled">Нет в наличии</button></a>
+												{% endif %}
+												<a href="/post/delete/{{ i.id }}"><button class="btn btn-xs btn-danger">Удалить</button></a>
+
+											</td>
+											{% else %}
+												{% if  i.stock  > 0 %}
+													<td class="text-right">
+														<a href="/post/sell/{{ i.id }}"><button class="btn btn-sm btn-danger">Продать единицу</button></a>
+													</td>
+												{% else %}
+													<td class="text-right">
+														<button class="btn btn-sm btn-danger disabled">Нет в наличии</button>
+													</td>
+												{% endif %}
+											{% endif %}
+										</tr>
+                                    {% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</div>
+
+					</div>
+					<!-- /Full width table -->
+
+				</div>
+
+			</section>
+<!-- /Main Content -->
+{% endblock %}

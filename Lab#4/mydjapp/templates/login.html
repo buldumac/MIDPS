@@ -1,0 +1,28 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Складской учет :: Страница входа</title></title>
+	<meta charset="utf-8" />
+	<link href="{% static 'css/login.css' %}" rel="stylesheet" media="screen">
+	<link href="{% static 'img/favicon.png' %}" rel="shortcut icon" type="image/x-icon" />
+</head>
+
+<body>
+	
+	<div class="login">
+		<div class="login-triangle"></div>
+  
+		<h2 class="login-header">Log in</h2>
+
+		  <form action="" method="post" class="login-container">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<p><input type="submit" value="Log in"></p>
+			<input type="hidden" name="next" value="{{ next }}">
+		  </form>
+		</div>
+
+</body>
+
+</html>
