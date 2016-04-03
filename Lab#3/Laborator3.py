@@ -127,7 +127,8 @@ class Calculator(QtGui.QDialog):
     def unaryOperatorClicked(self):
         clickedButton = self.sender()
         clickedOperator = clickedButton.text()
-        operand = float(self.display.text())
+        res = self.display.text().replace('e-', '')
+        operand = float(res)
 
         if clickedOperator == "Sqrt":
             if operand < 0.0:
